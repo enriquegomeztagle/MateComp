@@ -62,3 +62,11 @@ expr5 = complement_B & complement_A
 final_result3 = expr4 & expr5
 
 print("Result 3) :", final_result3)
+
+# Output
+# A = {5, 8, 11, 14, 17, 20, 23, 26, 29}
+# B = {3, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20}
+# C = {7, 12, 17, 22, 27}
+# Result 1) : {1, 2, 4, 17, 21, 24, 25, 28}
+# Result 2) : {17, 12, 7}
+# Result 3) : set()
