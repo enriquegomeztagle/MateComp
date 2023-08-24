@@ -1,5 +1,6 @@
 ##### Part 1
 ##### Find values for each set
+print("PART 1")
 universe_min = 2
 universe_max = 11
 is_under_universe_range = lambda value, universe_max_val: value <= universe_max_val
@@ -92,6 +93,7 @@ print("FINAL RESULT: (A | (B)' - C) Δ (D) =", sorted(final_o4))
 
 ##### Part 3 
 # Define sets
+print("PART 3")
 A = {12,3,10,14,6,16,7,9,1}
 B = {11,2,8,4,1,7,9,6,16}
 C = {3,10}
