@@ -91,15 +91,15 @@ complement_d = set(range(universe_min, universe_max)) - D
 final_o4 = diff_uni_a_b_com_c.symmetric_difference(complement_d)
 print("FINAL RESULT: (A | (B)' - C) Δ (D) =", sorted(final_o4))
 
-##### Part 3 
+##### Part 3
 # Define sets
 print("PART 3")
-A = {12,3,10,14,6,16,7,9,1}
-B = {11,2,8,4,1,7,9,6,16}
-C = {3,10}
-D = {1,7}
-E = {7,9}
-F = {2,8}
+A = {12, 3, 10, 14, 6, 16, 7, 9, 1}
+B = {11, 2, 8, 4, 1, 7, 9, 6, 16}
+C = {3, 10}
+D = {1, 7}
+E = {7, 9}
+F = {2, 8}
 G = {5}
 U = set()
 U.update(A)
@@ -109,70 +109,112 @@ U.update(D)
 U.update(E)
 U.update(F)
 U.update(G)
-U.update({13,15})
+U.update({13, 15})
 
 print("-----------\nSet operations")
+
 
 def complement(s):
     return set(range(1, 16)) - s
 
+
 # We need to say true or false for each premise, print V or F for each
-if F.issubset(B-A): print("F ⊆ (B-A): ", True)
-else: print("F ⊆ (B-A) =", False)
+if F.issubset(B - A):
+    print("F ⊆ (B-A): ", True)
+else:
+    print("F ⊆ (B-A) =", False)
 
-if A.intersection(C) == set(): print("A ∩ C = ∅: ", True)
-else: print("A ∩ C = ∅: ", False)
+if A.intersection(C) == set():
+    print("A ∩ C = ∅: ", True)
+else:
+    print("A ∩ C = ∅: ", False)
 
-if E.difference(D) == set({9}): print("E - D = {9}: ", True)
-else: print("E - D = {9}: ", False)
+if E.difference(D) == set({9}):
+    print("E - D = {9}: ", True)
+else:
+    print("E - D = {9}: ", False)
 
-if E.intersection(D) == set(): print("E ∩ D = ∅:", True)
-else: print("E ∩ D = ∅:", False)
+if E.intersection(D) == set():
+    print("E ∩ D = ∅:", True)
+else:
+    print("E ∩ D = ∅:", False)
 
-if C.union(E).issubset(B): print("(C ∪ E) ⊆ B: ", True)
-else: print("(C ∪ E) ⊆ B: ", False)
+if C.union(E).issubset(B):
+    print("(C ∪ E) ⊆ B: ", True)
+else:
+    print("(C ∪ E) ⊆ B: ", False)
 
-if D.difference(E).issubset(A.intersection(B)): print("(D - E) ⊆ (A ∩ B): ", True)
-else: print("(D - E) ⊆ (A ∩ B): ", False)
+if D.difference(E).issubset(A.intersection(B)):
+    print("(D - E) ⊆ (A ∩ B): ", True)
+else:
+    print("(D - E) ⊆ (A ∩ B): ", False)
 
-if C.difference(G) == {3,10}: print("(C - G) = {3,10}: ", True)
-else: print("(C - G) = {3,10}: ", False)
+if C.difference(G) == {3, 10}:
+    print("(C - G) = {3,10}: ", True)
+else:
+    print("(C - G) = {3,10}: ", False)
 
-if G.difference(F) == set(): print("(G - F) = ∅: ", True)
-else: print("(G - F) = ∅: ", False)
+if G.difference(F) == set():
+    print("(G - F) = ∅: ", True)
+else:
+    print("(G - F) = ∅: ", False)
 
-if F.difference(C).issubset(B): print("(F - C) ⊆ B: ", True)
-else: print("(F - C) ⊆ B: ", False)
+if F.difference(C).issubset(B):
+    print("(F - C) ⊆ B: ", True)
+else:
+    print("(F - C) ⊆ B: ", False)
 
-if A.difference(B) == {3,10,12,14}: print("(A - B) = {3,10,12,14}: ", True)
-else: print("(A - B) = {3,10,12,14}: ", False)
+if A.difference(B) == {3, 10, 12, 14}:
+    print("(A - B) = {3,10,12,14}: ", True)
+else:
+    print("(A - B) = {3,10,12,14}: ", False)
 
-if D.intersection(E) == {1,7,9}: print("(D ∩ E) = {1,7,9}: ", True)
-else: print("(D ∩ E) = {1,7,9}: ", False)
+if D.intersection(E) == {1, 7, 9}:
+    print("(D ∩ E) = {1,7,9}: ", True)
+else:
+    print("(D ∩ E) = {1,7,9}: ", False)
 
-if D.intersection(E).issubset(A.union(B)): print("(D ∩ E) ⊆ (A ∪ B): ", True)
-else: print("(D ∩ E) ⊆ (A ∥ B): ", False)
+if D.intersection(E).issubset(A.union(B)):
+    print("(D ∩ E) ⊆ (A ∪ B): ", True)
+else:
+    print("(D ∩ E) ⊆ (A ∥ B): ", False)
 
-if 16 not in (D.union(E)): print("16 ∉ (D ∪ E): ", True)
-else: print("16 ∉ (D ∩ E): ", False)
+if 16 not in (D.union(E)):
+    print("16 ∉ (D ∪ E): ", True)
+else:
+    print("16 ∉ (D ∩ E): ", False)
 
-if complement(A.union(B)) == {5,13,15}: print("(A ∪ B)' = {5,13,15}: ", True)
-else: print("(A ∪ B)' = {5,13,15}: ", False)
+if complement(A.union(B)) == {5, 13, 15}:
+    print("(A ∪ B)' = {5,13,15}: ", True)
+else:
+    print("(A ∪ B)' = {5,13,15}: ", False)
 
-if B.difference(A) == {2,4,8,11}: print("(B - A) = {2,4,8,11}: ", True)
-else: print("(B - A) = {2,4,8,11}: ", False)
+if B.difference(A) == {2, 4, 8, 11}:
+    print("(B - A) = {2,4,8,11}: ", True)
+else:
+    print("(B - A) = {2,4,8,11}: ", False)
 
-if A.intersection(B).union(A.difference(B)) == A: print("(A ∩ B) ∪ (A - B) = A: ", True)
-else: print("(A ∩ B) ∪ (A - B) = A: ", False)
+if A.intersection(B).union(A.difference(B)) == A:
+    print("(A ∩ B) ∪ (A - B) = A: ", True)
+else:
+    print("(A ∩ B) ∪ (A - B) = A: ", False)
 
-if 2 in complement(U): print("2 ∈ U': ", True)
-else: print("2 ∈ U': ", False)
+if 2 in complement(U):
+    print("2 ∈ U': ", True)
+else:
+    print("2 ∈ U': ", False)
 
-if (U-(A.union(B))) == G.union({13,15}): print("(U - (A ∩ B)) = G ∪ {13,15}: ", True)
-else: print("(U - (A ∩ B)) = G ∪ {13,15}: ", False)
+if (U - (A.union(B))) == G.union({13, 15}):
+    print("(U - (A ∩ B)) = G ∪ {13,15}: ", True)
+else:
+    print("(U - (A ∩ B)) = G ∪ {13,15}: ", False)
 
-if D.symmetric_difference(E) == {1,9}: print("(D ∆ E) = {1,9}: ", True)
-else: print("(D ∆ E) = {1,9}: ", False)
+if D.symmetric_difference(E) == {1, 9}:
+    print("(D ∆ E) = {1,9}: ", True)
+else:
+    print("(D ∆ E) = {1,9}: ", False)
 
-if A.difference(A.intersection(B)) == C.union({12,14}): print("(A - (A ∩ B)) = C ∪ {12,14}: ", True)
-else: print("(A - (A ∩ B)) = C ∪ {12,14}: ", False)
+if A.difference(A.intersection(B)) == C.union({12, 14}):
+    print("(A - (A ∩ B)) = C ∪ {12,14}: ", True)
+else:
+    print("(A - (A ∩ B)) = C ∪ {12,14}: ", False)
