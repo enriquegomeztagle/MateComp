@@ -1,5 +1,5 @@
 ##### Part 1
-##### Find values for each set
+##### Find values for each one of the sets
 print("PART 1")
 universe_min = 2
 universe_max = 11
