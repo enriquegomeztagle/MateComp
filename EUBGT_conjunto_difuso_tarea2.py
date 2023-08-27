@@ -223,3 +223,16 @@ def principal():
 if __name__ == "__main__":
     print("\n-------------------\nCon modificaciones: ")
     principal()
+
+
+'''
+OUTPUT
+1.5
+
+-------------------
+Con modificaciones:
+Salida difusa: 1.5
+Valor defuzzificado: 5050.0
+Decisión: Encender sistema
+[Finished in 153ms]
+'''
