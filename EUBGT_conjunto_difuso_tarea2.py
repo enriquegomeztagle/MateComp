@@ -156,7 +156,7 @@ Funcionalidades adicionales por añadir:
 import numpy as np
 
 
-def conjunto_difuso(x, a, b, c):
+def fuzzy_set(x, a, b, c):
     if x < a:
         return 0
     elif x > b:
@@ -165,74 +165,73 @@ def conjunto_difuso(x, a, b, c):
         return (x - a) / (b - a)
 
 
-def control_difuso(temperatura, humedad):
-    frio = (0, 15, 0)
-    templado = (15, 25, 1)
-    caliente = (25, 35, 0)
+def fuzzy_control(temperature, humidity):
+    cold = (0, 15, 0)
+    mild = (15, 25, 1)
+    hot = (25, 35, 0)
 
-    seco = (0, 40, 0)
-    normal = (40, 60, 1)
-    humedo = (60, 100, 0)
+    dry = (0, 40, 0)
+    normal_humidity = (40, 60, 1)
+    humid = (60, 100, 0)
 
-    temperatura_frio = conjunto_difuso(temperatura, *frio)
-    temperatura_templado = conjunto_difuso(temperatura, *templado)
-    temperatura_caliente = conjunto_difuso(temperatura, *caliente)
+    temperature_cold = fuzzy_set(temperature, *cold)
+    temperature_mild = fuzzy_set(temperature, *mild)
+    temperature_hot = fuzzy_set(temperature, *hot)
 
-    humedad_seco = conjunto_difuso(humedad, *seco)
-    humedad_normal = conjunto_difuso(humedad, *normal)
-    humedad_humedo = conjunto_difuso(humedad, *humedo)
+    humidity_dry = fuzzy_set(humidity, *dry)
+    humidity_normal = fuzzy_set(humidity, *normal_humidity)
+    humidity_humid = fuzzy_set(humidity, *humid)
 
-    reglas_difusas = np.array([humedad_seco, humedad_normal, humedad_humedo])
-    peso_temperatura = np.array(
-        [temperatura_frio, temperatura_templado, temperatura_caliente]
+    fuzzy_rules = np.array([humidity_dry, humidity_normal, humidity_humid])
+    temperature_weights = np.array(
+        [temperature_cold, temperature_mild, temperature_hot]
     )
-    salida = np.dot(reglas_difusas, peso_temperatura)
+    output = np.dot(fuzzy_rules, temperature_weights)
 
-    return salida
-
-
-def defuzzificacion(salida_difusa):
-    # Implementación de defuzzificación utilizando el centroide
-    valores_posibles = np.arange(0, 101)  # Posibles valores de la variable de salida
-    centroide = np.sum(valores_posibles * salida_difusa) / np.sum(salida_difusa)
-    return centroide
+    return output
 
 
-def interpretar_salida(valor):
-    if valor <= 30:
-        return "Apagar sistema"
-    elif valor <= 70:
-        return "Mantener estado actual"
+def defuzzification(output_fuzzy):
+    possible_values = np.arange(0, 101)  # Possible output variable values
+    centroid = np.sum(possible_values * output_fuzzy) / np.sum(output_fuzzy)
+    return centroid
+
+
+def interpret_output(value):
+    if value <= 30:
+        return "Turn off system"
+    elif value <= 70:
+        return "Maintain current state"
     else:
-        return "Encender sistema"
+        return "Turn on system"
 
 
-def principal():
-    temperatura = 25
-    humedad = 50
+def main():
+    temperature = 25
+    humidity = 50
 
-    salida_difusa = control_difuso(temperatura, humedad)
-    valor_defuzzificado = defuzzificacion(salida_difusa)
-    decision = interpretar_salida(valor_defuzzificado)
+    fuzzy_output = fuzzy_control(temperature, humidity)
+    defuzzified_value = defuzzification(fuzzy_output)
+    decision = interpret_output(defuzzified_value)
 
-    print("Salida difusa:", salida_difusa)
-    print("Valor defuzzificado:", valor_defuzzificado)
-    print("Decisión:", decision)
+    print("Fuzzy Output:", fuzzy_output)
+    print("Defuzzified Value:", defuzzified_value)
+    print("Decision:", decision)
 
 
 if __name__ == "__main__":
-    print("\n-------------------\nCon modificaciones: ")
-    principal()
+    print("\n-------------------\nWith modifications: ")
+    main()
 
 
-'''
+"""
 OUTPUT
 1.5
 
 -------------------
-Con modificaciones:
-Salida difusa: 1.5
-Valor defuzzificado: 5050.0
-Decisión: Encender sistema
-[Finished in 153ms]
-'''
+With modifications:
+Fuzzy Output: 1.5
+Defuzzified Value: 5050.0
+Decision: Turn on system
+[Finished in 144ms]
+"""
