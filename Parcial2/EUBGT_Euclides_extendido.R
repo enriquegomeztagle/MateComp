@@ -44,8 +44,8 @@ euclides_extendido <- function(a, b) {
 }
 
 # Solicitar al usuario que introduzca los valores de a y b
-a <- as.integer(readline(prompt = "Por favor, introduce el valor de a: "))
-b <- as.integer(readline(prompt = "Por favor, introduce el valor de b: "))
+a <- as.integer(readline(prompt = "a: "))
+b <- as.integer(readline(prompt = "b: "))
 
 # Ejecutar la función con los valores introducidos
 resultado <- euclides_extendido(a, b)
@@ -60,7 +60,7 @@ print(paste(a * resultado$s + b * resultado$t, "=", comprobacion))
 
 # Verificar si la ecuación es correcta comparándola con el MCD
 if (comprobacion == resultado$mcd) {
-  print("La comprobación es exitosa!")
+  print("COMPROBACIÓN EXITOSA")
 } else {
-  print("Algo salió mal en la comprobación.")
+  print("ERROR EN LA COMPROBACIÓN")
 }
