@@ -1,48 +1,41 @@
-sieve_of_eratosthenes <- function(n) {
-  if (is.na(n) || n < 0) {
-    cat("Please enter a valid positive number.\n")
-    return()
-  } else if (n == 0 || n == 1) {
-    cat(paste("No prime numbers until", n, ".\n"))
-    return()
+find_primes <- function(n) {
+  if (n <= 0) {
+    stop("Please enter a positive number.")
+  } else if (n %in% c(1, 2, 3)) {
+    stop("The number should be greater than 3.")
   }
   
-  if (n >= 2) {
-    cat(2)
-  }
-  if (n >= 3) {
-    cat(' ', 3, sep = '')
-  }
-  
-  max <- (n-3)/2
-  is_prime_vec <- rep(TRUE, max)
+  max_val <- (n - 3) %/% 2
+  is_prime <- rep(TRUE, max_val + 1)
   
   i <- 0
-  while ((2*i+3)*(2*i+3) <= n) {
-    if (is_prime_vec[i]) {
-      k <- 1  # Initialize k here.
-      while ((2*k+1)*(2*i+3) <= n) {
-        is_prime_vec[((2*k+1)*(2*i+3)-3)/2] <- FALSE
-        k <- k + 1        
+  while ((2 * i + 3) * (2 * i + 3) <= n) {
+    k <- i + 1
+    if (is_prime[i + 1]) {
+      while ((2 * k + 1) * (2 * i + 3) <= n) {
+        is_prime[((2 * k + 1) * (2 * i + 3) - 3) %/% 2 + 1] <- FALSE
+        k <- k + 1
       }
     }
     i <- i + 1
   }
   
-  # Removing the repeated 2, 3 printing.
   
-  for (j in 1:max) {
-    if (is_prime_vec[j]) {
-      cat(' ', 2*j+3, sep = '')
+  primes <- c(2, 3)
+  for (j in 2:(max_val + 1)) {
+    if (is_prime[j]) {
+      primes <- c(primes, 2 * (j - 1) + 3)
     }
   }
-  cat("\n")
+  
+  cat(paste(primes, collapse = ", "), "\n")
 }
 
-cat("Enter a number: ")
-number <- as.integer(readline(prompt=""))
-if (is.na(number)) {
-  cat("Please enter a valid number.\n")
+
+input_num <- as.integer(readline(prompt="Please enter a positive integer: "))
+
+if (is.na(input_num)) {
+  cat("Invalid input. Please enter a positive integer.\n")
 } else {
-  sieve_of_eratosthenes(number)
+  find_primes(input_num)
 }
