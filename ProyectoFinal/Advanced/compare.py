@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-# Método de Euler (tu versión original)
+# Método de Euler
 def euler_method(f, y0, t0, tn, n):
     h = (tn - t0) / n
     t_values = np.arange(t0, tn + h, h)
@@ -13,7 +13,7 @@ def euler_method(f, y0, t0, tn, n):
 
     return t_values, y_values
 
-# Método Runge-Kutta de segundo orden (RK2) (tu versión original)
+# Método Runge-Kutta de segundo orden (RK2)
 def rk2_method(f, y0, t0, tn, n):
     h = (tn - t0) / n
     t_values = np.arange(t0, tn + h, h)
