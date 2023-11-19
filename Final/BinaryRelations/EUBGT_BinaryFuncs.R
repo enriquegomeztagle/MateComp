@@ -1,3 +1,7 @@
+install.packages("igraph")
+
+library(igraph)
+
 # Define the set A because A = B
 A <- c(1, 2, 3, 4, 5, 6, 7, 8)
 
@@ -26,3 +30,10 @@ print(R_matrix)
 # [6,]    1    0    0    0    0    0    0    0
 # [7,]    0    0    0    0    0    0    0    0
 # [8,]    0    0    0    0    0    0    0    0
+
+# Create the graph from the adjacency matrix
+g <- graph_from_adjacency_matrix(R_matrix, mode="directed", diag=FALSE)
+
+# Plot the graph
+plot(g, layout=layout_in_circle, vertex.size=30, vertex.label=c(1:8), 
+     edge.arrow.size=0.5, main="Directed Graph of the Relation R")
