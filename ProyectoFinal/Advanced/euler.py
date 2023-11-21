@@ -19,7 +19,6 @@ def plot_methods(t_values, y_approx, y_exact, h, ax):
     ax.set_ylabel('y')
     ax.legend()
 
-# TODO: UPDATE F
 def f(t, y):
     return -2 * y + 4 * t
 
